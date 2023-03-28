@@ -13,7 +13,7 @@ const Header = () => {
       />
       <Text fontSize='3xl' >
             {/* Make this wording change based on ## of books */}
-            <b>You've read XX books!</b>
+            <b>Yikes, you haven't read any books...</b>
       </Text>
       <Box h='40px'>
         <InputGroup>
