@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import wormLogo from '../images/wormLogo.png'
-import { Box, Image, Input, Link, HStack, Text, InputGroup, InputLeftElement } from '@chakra-ui/react'
+import { Box, Image, Input, Link, HStack, Text, InputGroup, InputLeftElement, Switch } from '@chakra-ui/react'
 import { Search2Icon } from '@chakra-ui/icons'
 
 const Header = ({ books }) => {
@@ -28,6 +28,7 @@ const Header = ({ books }) => {
           <Input type='text' placeholder='Search' width='sm' />
         </InputGroup>
       </Box>
+        <Switch size='md' />
     </HStack>
   )
 }

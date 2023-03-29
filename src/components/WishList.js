@@ -4,7 +4,7 @@ import BookCards from "./BookCards"
 
 const WishList = ({ books }) => {
   return(
-    <Box boxShadow='md' p='6' rounded='md' bg='white'> 
+    <Box boxShadow='base' p='6' rounded='lg' bg='white'> 
       <HStack spacing='auto' height='full' >
         <Text fontSize='3xl'>Wish List</Text>
         <Button variant='ghost'>+</Button>

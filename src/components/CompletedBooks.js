@@ -5,7 +5,7 @@ import BookCards from "./BookCards";
 const CompletedBooks = ({ books }) => {
 
   return(
-    <Box boxShadow='md' p='6' rounded='md' bg='white'>
+    <Box>
       <HStack spacing='auto' height='full' >
         <Text fontSize='3xl'>Completed Books</Text>
         <Button variant='ghost'>+</Button>

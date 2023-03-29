@@ -4,8 +4,6 @@ import { Card, CardBody, Box, Stack, Text, Heading, Image } from '@chakra-ui/rea
 const BookCards = ({ book }) => {
 
   
-  // console.log(book.reviews)
-
   const reviews = book.reviews
 
   const sum = reviews.reduce(
@@ -14,12 +12,6 @@ const BookCards = ({ book }) => {
   )
 
   const avgRating = Math.floor(sum/reviews.length)
-
-//   const objects = [{ x: 1 }, { x: 2 }, { x: 3 }];
-// const sum = objects.reduce(
-//   (accumulator, currentValue) => accumulator + currentValue.x,
-//   0,
-// );
 
   return (
     <Card 
