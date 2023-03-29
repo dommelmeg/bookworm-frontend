@@ -1,9 +1,13 @@
-import React from "react"
+import React, { useState } from "react"
 import wormLogo from '../images/wormLogo.png'
 import { Box, Image, Input, Link, HStack, Text, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import { Search2Icon } from '@chakra-ui/icons'
 
-const Header = () => {
+const Header = ({ books }) => {
+  const [numBooksRead, setNumBooksRead] = useState(0)
+
+  const totalBooksRead = books.filter((book) => book.done_reading === true).length
+
   return (
     <HStack spacing='auto' height='full' >
       <Image
@@ -13,7 +17,7 @@ const Header = () => {
       />
       <Text fontSize='3xl' >
             {/* Make this wording change based on ## of books */}
-            <b>Yikes, you haven't read any books...</b>
+            <b>Wow, you've read {totalBooksRead} books so far!</b>
       </Text>
       <Box h='40px'>
         <InputGroup>

@@ -15,8 +15,6 @@ function App() {
     .then((books) => setBooks(books))
   }, [])
 
-  console.log(books)
-
   return (
     <ChakraProvider>
       <Grid
@@ -27,7 +25,7 @@ function App() {
         gap={10}
       >
         <GridItem colSpan={3} rowSpan={1}>
-          <Header />
+          <Header books={books} />
         </GridItem>
         <GridItem colSpan={2} rowSpan={6}>
           <CompletedBooks books={books} />
