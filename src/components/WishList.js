@@ -10,7 +10,7 @@ const WishList = ({ books }) => {
         <Button variant='ghost'>+</Button>
       </HStack>
       
-      <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
+      <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(150px, 1fr))'>
         {books.filter((book) => book.done_reading === false).map((completedBook) => {
           return (
             <BookCards key={completedBook.id} book={completedBook} />

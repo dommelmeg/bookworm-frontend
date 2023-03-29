@@ -15,6 +15,8 @@ function App() {
     .then((books) => setBooks(books))
   }, [])
 
+  console.log(books)
+
   return (
     <ChakraProvider>
       <Grid
