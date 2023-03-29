@@ -2,15 +2,11 @@ import React from "react";
 import { Card, CardBody, Box, Stack, Text, Heading, Image } from '@chakra-ui/react'
 
 const BookCards = ({ book }) => {
-
-  
   const reviews = book.reviews
-
   const sum = reviews.reduce(
     (acc, currVal) => acc + currVal.rating, 
     0,
   )
-
   const avgRating = Math.floor(sum/reviews.length)
 
   return (
@@ -30,7 +26,7 @@ const BookCards = ({ book }) => {
             />
             <Heading size='sm'>{book.title}</Heading>
             <Text size='sm'>{book.author}</Text>
-            <Text>{avgRating} Stars</Text>
+            <Text><b>{avgRating} Stars</b></Text>
           </Box>
         </Stack>
       </CardBody>

@@ -1,13 +1,14 @@
 import React from "react"
 import { Box, Image, Input, Link, SimpleGrid, Text, HStack, Button } from '@chakra-ui/react'
 import BookCards from "./BookCards"
+import AddBookModal from "./AddBookModal"
 
 const WishList = ({ books }) => {
   return(
     <Box boxShadow='base' p='6' rounded='lg' bg='white'> 
       <HStack spacing='auto' height='full' >
         <Text fontSize='3xl'>Wish List</Text>
-        <Button variant='ghost'>+</Button>
+        <AddBookModal />
       </HStack>
       
       <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(150px, 1fr))'>

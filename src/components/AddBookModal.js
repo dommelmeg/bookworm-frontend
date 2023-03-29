@@ -1,4 +1,5 @@
 import React from "react";
+import { Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter } from '@chakra-ui/react'
 
 const AddBookModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -8,10 +9,7 @@ const AddBookModal = () => {
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
-      <Button ml={4} ref={finalRef}>
-        I'll receive focus on close
-      </Button>
+      <Button variant='ghost' onClick={onOpen}> + </Button>
 
       <Modal
         initialFocusRef={initialRef}
