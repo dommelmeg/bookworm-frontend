@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../App.css';
 import { ChakraProvider, Grid, GridItem, Box, Text } from '@chakra-ui/react'
 import Header from '../components/Header';
@@ -7,6 +7,14 @@ import CompletedBooks from '../components/CompletedBooks';
 
 
 function App() {
+  const [books, setBooks] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:9292/books')
+    .then((r) => r.json())
+    .then((books) => setBooks(books))
+  }, [])
+
   return (
     <ChakraProvider>
       <Grid
@@ -20,10 +28,10 @@ function App() {
           <Header />
         </GridItem>
         <GridItem colSpan={2} rowSpan={6}>
-          <CompletedBooks />
+          <CompletedBooks books={books} />
         </GridItem>
         <GridItem colSpan={1} rowSpan={6}>
-          <WishList />
+          <WishList books={books} />
         </GridItem>
       </Grid>
     </ChakraProvider>
