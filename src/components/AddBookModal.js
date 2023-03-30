@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter } from '@chakra-ui/react'
+import { Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Checkbox } from '@chakra-ui/react'
 
 const AddBookModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -19,22 +19,36 @@ const AddBookModal = () => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Create your account</ModalHeader>
+          <ModalHeader>Add a New Book</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
-              <FormLabel>First name</FormLabel>
-              <Input ref={initialRef} placeholder='First name' />
+              <FormLabel>Title</FormLabel>
+              <Input ref={initialRef} placeholder='Title' />
             </FormControl>
 
             <FormControl mt={4}>
-              <FormLabel>Last name</FormLabel>
-              <Input placeholder='Last name' />
+              <FormLabel>Author</FormLabel>
+              <Input placeholder='Author' />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>Genre</FormLabel>
+              <Input placeholder='Genre' />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>Image URL</FormLabel>
+              <Input placeholder='Image URL' />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <Checkbox colorScheme='teal' >I have finished reading this book</Checkbox>
             </FormControl>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3}>
+            <Button colorScheme='teal' mr={3}>
               Save
             </Button>
             <Button onClick={onClose}>Cancel</Button>
