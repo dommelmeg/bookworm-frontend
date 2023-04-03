@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardBody, Box, Stack, Text, Heading, Image } from '@chakra-ui/react'
+import BookDetailModal from "./BookDetailModal";
 
 const BookCards = ({ book }) => {
   const reviews = book.reviews
@@ -27,6 +28,7 @@ const BookCards = ({ book }) => {
             <Heading size='sm'>{book.title}</Heading>
             <Text size='sm'>{book.author}</Text>
             <Text><b>{avgRating} Stars</b></Text>
+            <BookDetailModal />
           </Box>
         </Stack>
       </CardBody>
