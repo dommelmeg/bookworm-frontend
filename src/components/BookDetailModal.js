@@ -1,5 +1,6 @@
 import React from "react";
 import CommentCard from "./CommentCard";
+import Stars from "./Stars";
 import { 
   Box,
   Modal,
@@ -15,8 +16,7 @@ import {
   ModalCloseButton, 
   Button, 
   useDisclosure, 
-  GridItem,
-  Flex
+  GridItem
 } from '@chakra-ui/react'
 import { StarIcon, DeleteIcon } from '@chakra-ui/icons'
 
@@ -25,13 +25,6 @@ import { StarIcon, DeleteIcon } from '@chakra-ui/icons'
 const BookDetailModal = ({ book }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const finalRef = React.useRef(null)
-
-  const reviews = book.reviews
-  const sum = reviews.reduce(
-    (acc, currVal) => acc + currVal.rating, 
-    0,
-  )
-  const avgRating = Math.floor(sum/reviews.length)
 
   const handleDoneReadingClick = () => {
     console.log(book.done_reading)
@@ -96,16 +89,9 @@ const BookDetailModal = ({ book }) => {
                 <Text fontSize='xl'><b>Comments</b> 
                   <Button size='sm' variant='ghost' onClick={onOpen}> + </Button>
                 </Text>
-                <Flex>
-                  {!avgRating && <em>No Reviews Yet</em>}
-                  {avgRating > 0 && <StarIcon color='yellow.500' />}
-                  {avgRating > 1 && <StarIcon color='yellow.500' />}
-                  {avgRating > 2 && <StarIcon color='yellow.500' />}
-                  {avgRating > 3 && <StarIcon color='yellow.500' />}
-                  {avgRating > 4 && <StarIcon color='yellow.500' />}
-                </Flex>
+                <Stars book={book} />
                 <Divider paddingTop={2} />
-                <CommentCard reviews={reviews} />
+                <CommentCard reviews={book.reviews} />
               </GridItem>
             </Grid>
           </ModalBody>
@@ -115,7 +101,7 @@ const BookDetailModal = ({ book }) => {
             <Button colorScheme='teal' mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button margin={2} variant='ghost' onClick={handleDeleteButton} ><DeleteIcon /></Button>
+            <Button size='xs' margin={2} variant='ghost' onClick={handleDeleteButton} ><DeleteIcon /></Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
