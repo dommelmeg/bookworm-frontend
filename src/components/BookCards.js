@@ -18,9 +18,7 @@ const BookCards = ({ book }) => {
       overflow='hidden'
       variant='outline'
     >
-      <Stack 
-        spacing='auto'
-      >
+      <Stack spacing='auto'>
         <CardBody>
           <Box>
             <Image src={book.done_reading ? book.image : null} />

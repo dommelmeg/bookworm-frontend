@@ -9,15 +9,36 @@ import CompletedBooks from '../components/CompletedBooks';
 function App() {
   const [books, setBooks] = useState([])
 
-
   useEffect(() => {
     fetch('http://localhost:9292/books')
     .then((r) => r.json())
     .then((books) => setBooks(books))
   }, [])
 
-  const totalBooksRead = books.filter((book) => book.done_reading === true).length
+  const getAlertComment = () => {
+    const totalBooksRead = books.filter((book) => book.done_reading === true).length
+    console.log(totalBooksRead)
 
+    let text
+
+    if (totalBooksRead <= 0) {
+      text = `Yikes, I thought you liked to read... you've only read ${totalBooksRead} books...`
+    } else if (totalBooksRead > 0 && totalBooksRead <= 5) {
+      text = `You're on the road to greatness, you've read ${totalBooksRead} books so far!`
+    } else if (totalBooksRead > 5 && totalBooksRead <= 25) {
+      text = `Wow, great job! You've read ${totalBooksRead} books so far!`
+    } else if (totalBooksRead > 25 && totalBooksRead <= 50) {
+      text = `Amazing! You've read ${totalBooksRead} books so far!`
+    } else if (totalBooksRead > 50 && totalBooksRead <= 100) {
+      text = `ROCKSTAR, keep it up! You've read ${totalBooksRead} books so far!`
+    } else if (totalBooksRead > 100) {
+      text = `Okay, we can't even keep up with you! You've read ${totalBooksRead} books so far!`
+    } else {
+      text = 'Keep on reading you little bookworm!'
+    }
+    return text
+  }
+  
   return (
     <ChakraProvider>
       <Grid
@@ -35,7 +56,7 @@ function App() {
         <GridItem colSpan={2} rowSpan={1}>
           <Alert status='info' colorScheme='gray'>
             <AlertIcon />
-            Wow, you've read {totalBooksRead} books so far!
+            {getAlertComment()}
           </Alert>
         </GridItem>
 
