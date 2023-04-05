@@ -1,6 +1,7 @@
 import React from "react";
 import CommentCard from "./CommentCard";
 import Stars from "./Stars";
+import AddCommentAccordian from "./AddCommentAccordian";
 import { 
   Box,
   Modal,
@@ -18,7 +19,7 @@ import {
   useDisclosure, 
   GridItem
 } from '@chakra-ui/react'
-import { StarIcon, DeleteIcon } from '@chakra-ui/icons'
+import { DeleteIcon } from '@chakra-ui/icons'
 
 
 
@@ -54,7 +55,7 @@ const BookDetailModal = ({ book }) => {
           <ModalCloseButton />
           <ModalBody>
             <Grid
-              templateRows='repeat(2, 1fr)'
+              templateRows='repeat(1, 1fr)'
               templateColumns='repeat(3, 1fr)'
               gap={3}
             >
@@ -84,16 +85,18 @@ const BookDetailModal = ({ book }) => {
                   {book.done_reading ? null : <Button marginTop={4} onClick={handleDoneReadingClick}>Done Reading!</Button>}
                 </Box>
               </GridItem>
+            </Grid>
 
               <GridItem colSpan={3} rowSpan={1}>
-                <Text fontSize='xl'><b>Comments</b> 
-                  <Button size='sm' variant='ghost' onClick={onOpen}> + </Button>
-                </Text>
+                <Text fontSize='xl'><b>Comments</b></Text>
                 <Stars book={book} />
                 <Divider paddingTop={2} />
                 <CommentCard reviews={book.reviews} />
               </GridItem>
-            </Grid>
+
+              <GridItem colSpan={3} rowSpan={1}>
+                <AddCommentAccordian />
+              </GridItem>
           </ModalBody>
 
           <ModalFooter>
