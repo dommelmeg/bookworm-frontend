@@ -2,6 +2,7 @@ import React from "react"
 import { StarIcon } from '@chakra-ui/icons'
 import { Flex } from '@chakra-ui/react'
 
+
 const Stars = ({ book }) => {
   const reviews = book.reviews
   const sum = reviews.reduce(

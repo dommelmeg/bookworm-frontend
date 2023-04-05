@@ -4,12 +4,6 @@ import BookDetailModal from "./BookDetailModal";
 import Stars from "./Stars";
 
 const BookCards = ({ book }) => {
-  const reviews = book.reviews
-  const sum = reviews.reduce(
-    (acc, currVal) => acc + currVal.rating, 
-    0,
-  )
-  const avgRating = Math.floor(sum/reviews.length)
 
   return (
     <Card 
