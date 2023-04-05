@@ -1,9 +1,12 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Box, Image, Input, Link, SimpleGrid, Text, HStack, Button } from '@chakra-ui/react'
 import BookCards from "./BookCards"
 import AddBookModal from "./AddBookModal"
+import { AllBooksContext } from "../context/allBooks"
 
-const WishList = ({ books }) => {
+const WishList = () => {
+  const { wishListBooks } = useContext(AllBooksContext)
+
   return(
     <Box boxShadow='base' p='6' rounded='lg' bg='white'> 
       <HStack spacing='auto' height='full' >
@@ -12,7 +15,7 @@ const WishList = ({ books }) => {
       </HStack>
       
       <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(150px, 1fr))'>
-        {books.filter((book) => book.done_reading === false).map((completedBook) => {
+        {wishListBooks.map((completedBook) => {
           return (
             <BookCards key={completedBook.id} book={completedBook} />
           )

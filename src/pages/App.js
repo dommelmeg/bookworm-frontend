@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import '../App.css';
 import { ChakraProvider, Grid, GridItem, Box, Text, Alert, AlertIcon } from '@chakra-ui/react'
 import Header from '../components/Header';
 import WishList from '../components/WishList';
 import CompletedBooks from '../components/CompletedBooks';
+import {  AllBooksContext } from '../context/allBooks';
 
 
 function App() {
-  const [books, setBooks] = useState([])
+  const { books, setBooks } = useContext(AllBooksContext)
 
   useEffect(() => {
     fetch('http://localhost:9292/books')
@@ -40,36 +41,37 @@ function App() {
   }
   
   return (
-    <ChakraProvider>
-      <Grid
-        padding='10'
-        paddingTop='6'
-        height='3xl'
-        templateRows='repeat(7, 1fr)'
-        templateColumns='repeat(3, 1fr)'
-        gap={10}
-      >
-        <GridItem colSpan={3} rowSpan={1}>
-          <Header books={books} />
-        </GridItem>
+      <ChakraProvider>
 
-        <GridItem colSpan={2} rowSpan={1}>
-          <Alert status='info' colorScheme='gray'>
-            <AlertIcon />
-            {getAlertComment()}
-          </Alert>
-        </GridItem>
+        <Grid
+          padding='10'
+          paddingTop='6'
+          height='3xl'
+          templateRows='repeat(7, 1fr)'
+          templateColumns='repeat(3, 1fr)'
+          gap={10}
+          >
+          <GridItem colSpan={3} rowSpan={1}>
+            <Header />
+          </GridItem>
 
-        <GridItem colSpan={1} rowSpan={6}>
-          <WishList books={books} />
-        </GridItem>
+          <GridItem colSpan={2} rowSpan={1}>
+            <Alert status='info' colorScheme='gray'>
+              <AlertIcon />
+              {getAlertComment()}
+            </Alert>
+          </GridItem>
 
-        <GridItem colSpan={2} rowSpan={6}>
-          <CompletedBooks books={books} />
-        </GridItem>
+          <GridItem colSpan={1} rowSpan={6}>
+            <WishList />
+          </GridItem>
 
-      </Grid>
-    </ChakraProvider>
+          <GridItem colSpan={2} rowSpan={6}>
+            <CompletedBooks />
+          </GridItem>
+        </Grid>
+
+      </ChakraProvider>
   );
 }
 

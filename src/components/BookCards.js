@@ -4,6 +4,7 @@ import BookDetailModal from "./BookDetailModal";
 import Stars from "./Stars";
 
 const BookCards = ({ book }) => {
+  const { done_reading, image, title, author } = book
 
   return (
     <Card 
@@ -15,9 +16,9 @@ const BookCards = ({ book }) => {
       <Stack spacing='auto'>
         <CardBody>
           <Box>
-            <Image src={book.done_reading ? book.image : null} />
-            <Heading paddingTop={book.done_reading? 3 : 0} size='sm'>{book.title}</Heading>
-            <Text size='sm'>{book.author}</Text>
+            <Image src={done_reading ? image : null} />
+            <Heading paddingTop={done_reading? 3 : 0} size='sm'>{title}</Heading>
+            <Text size='sm'>{author}</Text>
           </Box>
         </CardBody>
         <CardFooter>

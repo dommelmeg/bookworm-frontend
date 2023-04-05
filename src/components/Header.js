@@ -3,9 +3,7 @@ import wormLogo from '../images/wormLogo.png'
 import { Box, Image, Input, Link, HStack, Text, InputGroup, InputLeftElement, Switch } from '@chakra-ui/react'
 import { Search2Icon } from '@chakra-ui/icons'
 
-const Header = ({ books }) => {
-
-  
+const Header = () => {
 
   return (
     <HStack spacing='auto' height='full' >

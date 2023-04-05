@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import CommentCard from "./CommentCard";
 import Stars from "./Stars";
 import AddCommentAccordian from "./AddCommentAccordian";
@@ -20,10 +20,12 @@ import {
   GridItem
 } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
-
+import { AllBooksContext } from "../context/allBooks";
 
 
 const BookDetailModal = ({ book }) => {
+  const { setBooks } = useContext(AllBooksContext)
+
   const { isOpen, onOpen, onClose } = useDisclosure()
   const finalRef = React.useRef(null)
 
@@ -48,6 +50,7 @@ const BookDetailModal = ({ book }) => {
       <Button mt={4} onClick={onOpen} size='sm' >
         More Details
       </Button>
+
       <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -60,28 +63,18 @@ const BookDetailModal = ({ book }) => {
               gap={3}
             >
               <GridItem colSpan={1} rowSpan={1}>
-                <Image 
-                  src={book.image}
-                />
+                <Image src={book.image} />
               </GridItem>
 
               <GridItem colSpan={2} rowSpan={1}>
                 <Box>
-                  <Text fontSize='xs'>
-                    Author
-                  </Text>
-                  <Text fontSize='lg'>
-                    {book.author}
-                  </Text>
+                  <Text fontSize='xs'>Author</Text>
+                  <Text fontSize='lg'>{book.author}</Text>
                 </Box>
                 
                 <Box paddingTop={3}>
-                  <Text fontSize='xs'>
-                    Genre
-                  </Text>
-                  <Text fontSize='lg'>
-                    {book.genre}
-                  </Text>
+                  <Text fontSize='xs'>Genre</Text>
+                  <Text fontSize='lg'>{book.genre}</Text>
                   {book.done_reading ? null : <Button marginTop={4} onClick={handleDoneReadingClick}>Done Reading!</Button>}
                 </Box>
               </GridItem>
