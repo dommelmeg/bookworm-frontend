@@ -24,13 +24,43 @@ import { AllBooksContext } from "../context/allBooks";
 
 
 const BookDetailModal = ({ book }) => {
-  const { setBooks } = useContext(AllBooksContext)
+  const { books, setBooks } = useContext(AllBooksContext)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const finalRef = React.useRef(null)
 
+  const handleUpdateBook = (updatedBook) => {
+    const updatedBooks = books.map((book) => {
+      if (book.id === updatedBook.id) {
+        return updatedBook
+      } else {
+        return book
+      }
+    })
+    setBooks(updatedBooks)
+  }
+
+  // THIS IS A PATCH
   const handleDoneReadingClick = () => {
-    console.log(book.done_reading)
+    // book.done_reading = true
+    // console.log(book.done_reading)
+    fetch(`http://localhost:9292/books/${book.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        done_reading: !book.done_reading,
+      }),
+    })
+    .then((r) => r.json())
+    .then((updatedBook) => handleUpdateBook(updatedBook))
+
+  }
+
+  const handleDeletedBook = (deletedBook) => {
+    const updatedBooks = books.filter((book) => book.id !== deletedBook.id)
+    setBooks(updatedBooks)
   }
 
   const handleDeleteButton = () => {
@@ -41,8 +71,7 @@ const BookDetailModal = ({ book }) => {
       }
     })
     .then((r) => r.json())
-    //FIX THIS FILTER OUT THIS BOOK & UPDATE STATE & USE CONTEXT YA DUMMY
-    .then((deletedBook) => console.log(deletedBook));
+    .then((deletedBook) => handleDeletedBook(deletedBook));
   }
 
   return (
