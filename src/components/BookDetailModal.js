@@ -25,7 +25,6 @@ import { AllBooksContext } from "../context/allBooks";
 
 const BookDetailModal = ({ book }) => {
   const { books, setBooks } = useContext(AllBooksContext)
-
   const { isOpen, onOpen, onClose } = useDisclosure()
   const finalRef = React.useRef(null)
 
@@ -40,10 +39,7 @@ const BookDetailModal = ({ book }) => {
     setBooks(updatedBooks)
   }
 
-  // THIS IS A PATCH
   const handleDoneReadingClick = () => {
-    // book.done_reading = true
-    // console.log(book.done_reading)
     fetch(`http://localhost:9292/books/${book.id}`, {
       method: "PATCH",
       headers: {
@@ -55,7 +51,6 @@ const BookDetailModal = ({ book }) => {
     })
     .then((r) => r.json())
     .then((updatedBook) => handleUpdateBook(updatedBook))
-
   }
 
   const handleDeletedBook = (deletedBook) => {

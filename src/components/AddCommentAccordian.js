@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { 
   Box,
   Modal,
@@ -19,14 +19,24 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
-  AccordionIcon
+  AccordionIcon,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  Input,
 } from '@chakra-ui/react'
 
 const AddCommentAccordian = () => {
+  const [comment, setComment] = useState('')
   const { isOpen, onOpen, onClose } = useDisclosure()
 
+  const handleChange = () => {
+    setComment(comment)
+  }
+
   return (
-    // <Button size='sm' variant='ghost' onClick={onOpen}> + </Button>
     <Accordion allowToggle>
       <AccordionItem>
         <h2>
@@ -38,10 +48,23 @@ const AddCommentAccordian = () => {
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-          commodo consequat.
+
+        <Text fontSize='xs'>Rating</Text>
+        <NumberInput defaultValue={0} min={0} max={5}>
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
+
+        <Box paddingTop={2}>
+          <Text fontSize='xs'>Comment</Text>
+          <Input 
+            placeholder='Leave a comment'
+          />
+        </Box>
+
         </AccordionPanel>
       </AccordionItem>
     </Accordion>
