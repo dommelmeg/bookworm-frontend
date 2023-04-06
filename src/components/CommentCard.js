@@ -11,7 +11,7 @@ import {
   Input,
   Divider
 } from '@chakra-ui/react'
-import { CheckIcon, CloseIcon, EditIcon } from '@chakra-ui/icons'
+import { CheckIcon, CloseIcon, EditIcon, DeleteIcon } from '@chakra-ui/icons'
 
 const CommentCard = ({ reviews }) => {
   function EditableControls() {
@@ -22,14 +22,19 @@ const CommentCard = ({ reviews }) => {
       getEditButtonProps,
     } = useEditableControls()
 
+    const handleDeleteBtn = () => {
+      console.log('bye bitch')
+    }
+
     return isEditing ? (
       <ButtonGroup justifyContent='left' size='xs'>
         <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
         <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
       </ButtonGroup>
     ) : (
-      <Flex justifyContent='left'>
+      <Flex justifyContent='left' gap='2' >
         <IconButton size='xs' icon={<EditIcon />} {...getEditButtonProps()} />
+        <IconButton size='xs' icon={<DeleteIcon />} onClick={handleDeleteBtn} />
       </Flex>
     )
   }

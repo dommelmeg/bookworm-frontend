@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import '../App.css';
-import { ChakraProvider, Grid, GridItem, Box, Text, Alert, AlertIcon } from '@chakra-ui/react'
+import { Grid, GridItem, Box, Text, Alert, AlertIcon } from '@chakra-ui/react'
 import Header from '../components/Header';
 import WishList from '../components/WishList';
 import CompletedBooks from '../components/CompletedBooks';
@@ -40,8 +40,6 @@ function App() {
   }
   
   return (
-      <ChakraProvider>
-
         <Grid
           padding='10'
           paddingTop='6'
@@ -55,7 +53,7 @@ function App() {
           </GridItem>
 
           <GridItem colSpan={2} rowSpan={1}>
-            <Alert status='info' colorScheme='gray'>
+            <Alert status='info' colorScheme='gray' rounded='lg'>
               <AlertIcon />
               {getAlertComment()}
             </Alert>
@@ -69,8 +67,6 @@ function App() {
             <CompletedBooks />
           </GridItem>
         </Grid>
-
-      </ChakraProvider>
   );
 }
 

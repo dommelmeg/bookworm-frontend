@@ -8,7 +8,7 @@ const WishList = () => {
   const { wishListBooks } = useContext(AllBooksContext)
 
   return(
-    <Box boxShadow='base' p='6' rounded='lg' bg='white'> 
+    <Box boxShadow='base' p='6' rounded='lg' > 
       <HStack spacing='auto' height='full' >
         <Text fontSize='3xl'>Wish List</Text>
         <AddBookModal />

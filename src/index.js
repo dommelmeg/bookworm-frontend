@@ -4,13 +4,18 @@ import './index.css';
 import App from './pages/App';
 import reportWebVitals from './reportWebVitals';
 import { AllBooksProvider } from './context/allBooks';
+import { ColorModeScript, ChakraProvider } from '@chakra-ui/react'
+import theme from './theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AllBooksProvider>
-      <App />
-    </AllBooksProvider>
+    <ChakraProvider>
+      <AllBooksProvider>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+        <App />
+      </AllBooksProvider>
+    </ChakraProvider>
   </React.StrictMode>
 );
 
