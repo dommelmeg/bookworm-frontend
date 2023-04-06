@@ -18,7 +18,6 @@ function App() {
 
   const getAlertComment = () => {
     const totalBooksRead = books.filter((book) => book.done_reading === true).length
-    console.log(totalBooksRead)
 
     let text
 

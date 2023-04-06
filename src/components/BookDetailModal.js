@@ -112,12 +112,11 @@ const BookDetailModal = ({ book }) => {
               </GridItem>
 
               <GridItem colSpan={3} rowSpan={1}>
-                <AddCommentAccordian />
+                <AddCommentAccordian bookId={book.id} />
               </GridItem>
           </ModalBody>
 
           <ModalFooter>
-            {/* <Button variant='ghost'>Edit Book</Button> */}
             <Button colorScheme='teal' mr={3} onClick={onClose}>
               Close
             </Button>

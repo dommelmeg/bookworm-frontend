@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AllBooksContext } from "../context/allBooks";
 import { 
   Box,
   Text,
@@ -17,10 +18,10 @@ import {
   Flex,
 } from '@chakra-ui/react'
 
-const AddCommentAccordian = () => {
+const AddCommentAccordian = ({ bookId }) => {
   const [commentInput, setCommentInput] = useState('')
   const [ratingInput, setRatingInput] = useState(1)
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { books, setBooks } = useContext(AllBooksContext)
 
   const handleRatingChange = (e) => {
     setRatingInput(e)
@@ -30,9 +31,30 @@ const AddCommentAccordian = () => {
     setCommentInput(e.target.value)
   }
 
-  const handleSubmit = () => {
-    console.log(commentInput)
-    console.log(ratingInput)
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const formData = {
+      rating: ratingInput,
+      comment: commentInput,
+      book_id: bookId,
+    }
+
+    fetch('http://localhost:9292/reviews', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+      .then((r) => r.json())
+      // Add a funct. that will "regenerate" the book detail modal & show the comment without having to refresh
+      .then(() => fetch('http://localhost:9292/books')
+        .then((r) => r.json())
+        .then((books) => setBooks(books)))
+
+    setRatingInput()
+    setCommentInput('')
   }
 
   return (
@@ -51,6 +73,7 @@ const AddCommentAccordian = () => {
         <Text fontSize='xs'>Rating</Text>
         <NumberInput 
           defaultValue={1} min={1} max={5}
+          value={ratingInput}
           onChange={handleRatingChange}
         >
           <NumberInputField />
