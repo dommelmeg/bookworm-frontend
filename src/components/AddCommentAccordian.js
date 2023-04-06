@@ -1,39 +1,38 @@
 import React, { useState } from "react";
 import { 
   Box,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  Image,
   Text,
-  Grid,
-  Divider,
-  ModalCloseButton, 
   Button, 
   useDisclosure, 
-  GridItem,
   Accordion,
   AccordionItem,
   AccordionButton,
   AccordionPanel,
-  AccordionIcon,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
   Input,
+  Flex,
 } from '@chakra-ui/react'
 
 const AddCommentAccordian = () => {
-  const [comment, setComment] = useState('')
+  const [commentInput, setCommentInput] = useState('')
+  const [ratingInput, setRatingInput] = useState(1)
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const handleChange = () => {
-    setComment(comment)
+  const handleRatingChange = (e) => {
+    setRatingInput(e)
+  }
+
+  const handleCommentChange = (e) => {
+    setCommentInput(e.target.value)
+  }
+
+  const handleSubmit = () => {
+    console.log(commentInput)
+    console.log(ratingInput)
   }
 
   return (
@@ -50,7 +49,10 @@ const AddCommentAccordian = () => {
         <AccordionPanel pb={4}>
 
         <Text fontSize='xs'>Rating</Text>
-        <NumberInput defaultValue={0} min={0} max={5}>
+        <NumberInput 
+          defaultValue={1} min={1} max={5}
+          onChange={handleRatingChange}
+        >
           <NumberInputField />
           <NumberInputStepper>
             <NumberIncrementStepper />
@@ -62,8 +64,25 @@ const AddCommentAccordian = () => {
           <Text fontSize='xs'>Comment</Text>
           <Input 
             placeholder='Leave a comment'
+            value={commentInput}
+            onChange={handleCommentChange}
           />
         </Box>
+
+        <Flex>
+          <Button 
+            marginTop='2'
+            onClick={handleSubmit}
+          >
+            Save
+          </Button>
+          <AccordionButton 
+            fontSize='xs' 
+            marginTop='2'
+          >
+            Cancel
+          </AccordionButton>
+        </Flex>
 
         </AccordionPanel>
       </AccordionItem>
