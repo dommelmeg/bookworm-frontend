@@ -50,17 +50,6 @@ const CommentCard = ({ review }) => {
   const handleCommentChange = (e) => {
     setEditCommentInput(e.target.value)
   }
-
-  const handleUpdatedReview = (updatedReview) => {
-    // const updatedReviews = books.map((book) => {
-    //   if (book.id === updatedBook.id) {
-    //     return updatedBook
-    //   } else {
-    //     return book
-    //   }
-    // })
-    // setBooks(updatedBooks)
-  }
   
   function EditableControls() {
     const {
