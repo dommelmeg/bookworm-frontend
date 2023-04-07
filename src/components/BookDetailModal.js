@@ -108,7 +108,11 @@ const BookDetailModal = ({ book }) => {
                 <Text fontSize='xl'><b>Comments</b></Text>
                 <Stars book={book} />
                 <Divider paddingTop={2} />
-                <CommentCard reviews={book.reviews} />
+                {book.reviews.map((review) => {
+                  return(
+                    <CommentCard review={review} key={review.id} />
+                  )
+                })}
               </GridItem>
 
               <GridItem colSpan={3} rowSpan={1}>

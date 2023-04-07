@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { 
   Editable,
   useEditableControls,
@@ -12,8 +12,56 @@ import {
   Divider
 } from '@chakra-ui/react'
 import { CheckIcon, CloseIcon, EditIcon, DeleteIcon } from '@chakra-ui/icons'
+import { AllBooksContext } from "../context/allBooks";
 
-const CommentCard = ({ reviews }) => {
+const CommentCard = ({ review }) => {
+  const { setBooks, books } = useContext(AllBooksContext)
+  const [editCommentInput, setEditCommentInput] = useState('')
+
+  const handleSubmitClick = () => {
+    fetch(`http://localhost:9292/reviews/${review.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        comment: editCommentInput,
+      }),
+    })
+    .then((r) => r.json())
+    .then(() => fetch('http://localhost:9292/books')
+        .then((r) => r.json())
+        .then((books) => setBooks(books)))
+  }
+
+  const handleDeleteBtn = () => {
+    fetch(`http://localhost:9292/reviews/${review.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+    .then((r) => r.json())
+    .then(() => fetch('http://localhost:9292/books')
+        .then((r) => r.json())
+        .then(() => setBooks(books)))
+  }
+
+  const handleCommentChange = (e) => {
+    setEditCommentInput(e.target.value)
+  }
+
+  const handleUpdatedReview = (updatedReview) => {
+    // const updatedReviews = books.map((book) => {
+    //   if (book.id === updatedBook.id) {
+    //     return updatedBook
+    //   } else {
+    //     return book
+    //   }
+    // })
+    // setBooks(updatedBooks)
+  }
+  
   function EditableControls() {
     const {
       isEditing,
@@ -21,11 +69,7 @@ const CommentCard = ({ reviews }) => {
       getCancelButtonProps,
       getEditButtonProps,
     } = useEditableControls()
-
-    const handleDeleteBtn = () => {
-      console.log('bye bitch')
-    }
-
+      
     return isEditing ? (
       <ButtonGroup justifyContent='left' size='xs'>
         <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
@@ -38,25 +82,26 @@ const CommentCard = ({ reviews }) => {
       </Flex>
     )
   }
-
+  
   return (
-    reviews.map((review) => {
-      return (
-        <Editable
-          textAlign='left'
-          defaultValue={review.comment}
-          fontSize='sm'
-          isPreviewFocusable={false}
-          key={review.id}
-        >
-          <EditablePreview />
-          {/* Here is the custom input */}
-          <Input as={EditableInput} />
-          <EditableControls />
-          <Divider paddingBottom='4' />
-        </Editable>
-      )
-    })
+    <Editable
+      textAlign='left'
+      defaultValue={review.comment}
+      fontSize='sm'
+      isPreviewFocusable={false}
+      key={review.id}
+      onSubmit={handleSubmitClick}
+      >
+      <EditablePreview />
+      {/* Here is the custom input */}
+      <Input 
+        as={EditableInput}
+        value={editCommentInput}
+        onChange={handleCommentChange}
+      />
+      <EditableControls />
+      <Divider paddingBottom='4' />
+    </Editable>
   )
 }
 

@@ -5,7 +5,6 @@ import { Search2Icon } from '@chakra-ui/icons'
 
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode()
-  console.log(colorMode)
 
   return (
     <HStack spacing='auto' height='full' >
