@@ -82,7 +82,6 @@ const CommentCard = ({ review }) => {
       onSubmit={handleSubmitClick}
       >
       <EditablePreview />
-      {/* Here is the custom input */}
       <Input 
         as={EditableInput}
         value={editCommentInput}

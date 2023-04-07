@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import '../App.css';
-import { Grid, GridItem, Box, Text, Alert, AlertIcon } from '@chakra-ui/react'
+import { Grid, GridItem, Alert, AlertIcon } from '@chakra-ui/react'
 import Header from '../components/Header';
 import WishList from '../components/WishList';
 import CompletedBooks from '../components/CompletedBooks';
@@ -18,7 +18,6 @@ function App() {
 
   const getAlertComment = () => {
     const totalBooksRead = books.filter((book) => book.done_reading === true).length
-
     let text
 
     if (totalBooksRead <= 0) {

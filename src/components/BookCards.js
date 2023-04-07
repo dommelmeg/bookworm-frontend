@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Box, Stack, Text, Heading, Image, CardFooter, Flex } from '@chakra-ui/react'
+import { Card, CardBody, Box, Stack, Text, Heading, Image, CardFooter } from '@chakra-ui/react'
 import BookDetailModal from "./BookDetailModal";
 import Stars from "./Stars";
 

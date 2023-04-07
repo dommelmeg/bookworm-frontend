@@ -4,7 +4,6 @@ import {
   Box,
   Text,
   Button, 
-  useDisclosure, 
   Accordion,
   AccordionItem,
   AccordionButton,
@@ -48,7 +47,6 @@ const AddCommentAccordian = ({ bookId }) => {
       body: JSON.stringify(formData)
     })
       .then((r) => r.json())
-      // Add a funct. that will "regenerate" the book detail modal & show the comment without having to refresh
       .then(() => fetch('http://localhost:9292/books')
         .then((r) => r.json())
         .then((books) => setBooks(books)))
