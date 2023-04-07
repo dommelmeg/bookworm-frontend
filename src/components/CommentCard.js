@@ -3,15 +3,16 @@ import {
   Editable,
   useEditableControls,
   EditableInput,
-  EditableTextarea,
   EditablePreview, 
   IconButton,
   ButtonGroup,
   Flex,
   Input,
-  Divider
+  Divider,
+  Box,
+  Text
 } from '@chakra-ui/react'
-import { CheckIcon, CloseIcon, EditIcon, DeleteIcon } from '@chakra-ui/icons'
+import { CheckIcon, CloseIcon, EditIcon, DeleteIcon, StarIcon } from '@chakra-ui/icons'
 import { AllBooksContext } from "../context/allBooks";
 
 const CommentCard = ({ review }) => {
@@ -72,24 +73,37 @@ const CommentCard = ({ review }) => {
     )
   }
   
+  let rating = review.rating
+
   return (
-    <Editable
-      textAlign='left'
-      defaultValue={review.comment}
-      fontSize='sm'
-      isPreviewFocusable={false}
-      key={review.id}
-      onSubmit={handleSubmitClick}
-      >
-      <EditablePreview />
-      <Input 
-        as={EditableInput}
-        value={editCommentInput}
-        onChange={handleCommentChange}
-      />
-      <EditableControls />
-      <Divider paddingBottom='4' />
-    </Editable>
+    <Box>
+      <Flex paddingTop='2' fontSize='xs'>
+      {!rating && <em>No Rating Given</em>}
+      {rating > 0 && <StarIcon color='gray.500' />}
+      {rating > 1 && <StarIcon color='gray.500' />}
+      {rating > 2 && <StarIcon color='gray.500' />}
+      {rating > 3 && <StarIcon color='gray.500' />}
+      {rating > 4 && <StarIcon color='gray.500' />}
+      </Flex>
+
+      <Editable
+        textAlign='left'
+        defaultValue={review.comment}
+        fontSize='sm'
+        isPreviewFocusable={false}
+        key={review.id}
+        onSubmit={handleSubmitClick}
+        >
+        <EditablePreview />
+        <Input 
+          as={EditableInput}
+          value={editCommentInput}
+          onChange={handleCommentChange}
+          />
+        <EditableControls />
+        <Divider paddingBottom='4' />
+      </Editable>
+    </Box>
   )
 }
 
