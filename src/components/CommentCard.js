@@ -61,7 +61,7 @@ const CommentCard = ({ review }) => {
     } = useEditableControls()
       
     return isEditing ? (
-      <ButtonGroup justifyContent='left' size='xs'>
+      <ButtonGroup justifyContent='left' size='xs' paddingTop='2'>
         <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
         <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
       </ButtonGroup>

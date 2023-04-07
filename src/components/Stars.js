@@ -14,11 +14,11 @@ const Stars = ({ book }) => {
   return (
     <Flex>
       {!avgRating && <em>No Reviews Yet</em>}
-      {avgRating > 0 && <StarIcon color='yellow.500' />}
-      {avgRating > 1 && <StarIcon color='yellow.500' />}
-      {avgRating > 2 && <StarIcon color='yellow.500' />}
-      {avgRating > 3 && <StarIcon color='yellow.500' />}
-      {avgRating > 4 && <StarIcon color='yellow.500' />}
+      {avgRating > 0 && <StarIcon color='teal.500' />}
+      {avgRating > 1 && <StarIcon color='teal.500' />}
+      {avgRating > 2 && <StarIcon color='teal.500' />}
+      {avgRating > 3 && <StarIcon color='teal.500' />}
+      {avgRating > 4 && <StarIcon color='teal.500' />}
     </Flex>
   )
 
