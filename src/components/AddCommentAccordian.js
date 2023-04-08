@@ -47,9 +47,22 @@ const AddCommentAccordian = ({ bookId }) => {
       body: JSON.stringify(formData)
     })
       .then((r) => r.json())
-      .then(() => fetch('http://localhost:9292/books')
-        .then((r) => r.json())
-        .then((books) => setBooks(books)))
+      // iterate through books array to find book via ID
+      // add to reviews – post review to that book
+      .then((newReview) => {
+        const updatedBooks = books.map((book) => {
+          if (book.id === newReview.book_id) {
+            // const bookReviews = book.reviews
+            // const updatedBookReviews = [...bookReviews, newReview]
+            // book.reviews = updatedBookReviews
+            // return book
+            return {...book, reviews: [...book.reviews, newReview]}
+          } else { 
+            return book
+          }
+        })
+        setBooks(updatedBooks)
+      })
 
     setRatingInput()
     setCommentInput('')

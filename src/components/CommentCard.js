@@ -30,9 +30,29 @@ const CommentCard = ({ review }) => {
       }),
     })
     .then((r) => r.json())
-    .then(() => fetch('http://localhost:9292/books')
-        .then((r) => r.json())
-        .then((books) => setBooks(books)))
+    // iterate through books to find book associated with review
+    // iterate through that book's reviews to find review that needs patching
+    // replace that review with updated review
+    // return updated book
+    // return updated books array
+    .then((updatedReview) => {
+      const updatedBooks = books.map((book) => {
+        if (book.id === updatedReview.book_id) {
+          const updatedReviews = book.reviews.map((review) => {
+            if (review.id === updatedReview.id) {
+              console.log(updatedReview.comment)
+              return {...review, comment: updatedReview.comment}
+            } else {
+              return review
+            }
+          })
+          return { ...book, updatedReviews }
+        } else {
+          return book
+        }
+      })
+      setBooks(updatedBooks)
+    })
   }
 
   const handleDeleteBtn = () => {
@@ -43,9 +63,17 @@ const CommentCard = ({ review }) => {
       }
     })
     .then((r) => r.json())
-    .then(() => fetch('http://localhost:9292/books')
-        .then((r) => r.json())
-        .then(() => setBooks(books)))
+    .then((deletedReview) => {
+      const updatedBooks = books.map((book) => {
+        if (book.id === deletedReview.book_id) {
+          const updatedReviews = book.reviews.filter((review) => review.id !== deletedReview.id)
+          return { ...book, reviews: updatedReviews }
+        } else {
+          return book
+        }
+      })
+      setBooks(updatedBooks)
+    })
   }
 
   const handleCommentChange = (e) => {
